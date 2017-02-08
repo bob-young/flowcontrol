@@ -1,0 +1,29 @@
+/* Enclave.edl - Top EDL file. */
+
+enclave {
+    
+    include "user_types.h" /* buffer_t */
+
+    from "../App/function/print.edl" import *;
+
+        
+    trusted{
+	//public int encall_print([user_check] char* fmt,int num);
+	public int encall_print_int(int line,[user_check]int* int_array);
+	public int encall_print_double(int line,[user_check]double* double_array);
+	public int encall_print_float(int line,[user_check]float* float_array);
+	public int encall_print_char(int line,[user_check]char* char_array);
+	public int encall_print_long(int line,[user_check]long* long_array);
+	public int encall_switch_type(int Line,int intype, [user_check]int* int_array, int lenint,
+					[user_check]double* double_array, int lendouble,
+					[user_check]float* float_array, int lenfloat,
+					[user_check]char* char_array, int lenchar,
+					[user_check]long* long_array, int lenlong);
+	public int encall_table_load(void);
+	//public int encall_load_hash([user_check]char* buf,int line);
+	public int encall_add_matrix(int type,int left,[user_check]char* right,int op);
+	public int encall_load_hash([user_check]int* hash_int,[user_check]double* hash_double,
+					[user_check]float* hash_float,[user_check]char* hash_char,[user_check]long* hash_long);
+    };
+
+};
